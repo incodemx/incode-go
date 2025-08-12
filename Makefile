@@ -122,3 +122,17 @@ release:
 clean:
 	@echo "Cleaning ./cmd/*/dist (if any)..."
 	@rm -rf cmd/*/dist 2>/dev/null || true
+
+
+# Link a local module into another module's go.mod
+# Usage:
+#   make link-local MODULE=dbx DEP=github.com/incodemx/incode-go/configx DIR=../configx
+.PHONY: link-local
+link-local:
+	@if [ -z "$(MODULE)" ] || [ -z "$(DEP)" ] || [ -z "$(DIR)" ]; then \
+		echo "Usage: make link-local MODULE=<moduleDir> DEP=<modulePath> DIR=<relativePath>"; \
+		exit 2; \
+	fi
+	$(GO) -C $(MODULE) mod edit -replace=$(DEP)=$(DIR)
+	$(GO) -C $(MODULE) mod edit -require=$(DEP)@v0.0.0
+	$(GO) -C $(MODULE) mod tidy
