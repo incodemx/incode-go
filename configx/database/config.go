@@ -7,8 +7,8 @@ import (
 	"github.com/incodemx/incode-go/configx/helper"
 )
 
-// NewDatabaseConfiguration defines and loads the configuration from flags and environment variables.
-func NewDatabaseConfiguration() (*Configuration, error) {
+// NewConfiguration defines and loads the configuration from flags and environment variables.
+func NewConfiguration() (*Configuration, error) {
 	cfg := &Configuration{}
 
 	dbURL := helper.Load("DB_URL", "")
