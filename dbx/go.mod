@@ -11,5 +11,3 @@ require (
 	github.com/incodemx/incode-go/configx v0.0.0
 	github.com/lib/pq v1.10.9
 )
-
-replace github.com/incodemx/incode-go/configx => ../configx
