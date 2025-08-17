@@ -1,19 +1,12 @@
-# ===================== Incode Go Monorepo Makefile =====================
-# Auto-detects modules, manages go.work, runs build/test/lint, and
-# auto-bumps per-module semver tags (major/minor/patch).
-# ======================================================================
-
 GO ?= go
 SHELL := /bin/bash
 ROOT := $(abspath .)
 export GOWORK := $(ROOT)/go.work
 
-# Auto-detect submodules (depth 2 covers cmd/*)
 DETECTED_MODULE_DIRS := $(shell { \
   command -v find >/dev/null 2>&1 && \
   find . -mindepth 1 -maxdepth 2 -name go.mod -print0 | xargs -0 -n1 dirname | sed 's|^\./||' | sort; } || true)
 
-# Fallback list if detection fails (edit as you add/remove modules)
 KNOWN_MODULE_DIRS := dbx httpx configx cmd/dbx-migrate
 MODULE_DIRS := $(if $(strip $(DETECTED_MODULE_DIRS)),$(DETECTED_MODULE_DIRS),$(KNOWN_MODULE_DIRS))
 
