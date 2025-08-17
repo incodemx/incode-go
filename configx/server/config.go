@@ -1,4 +1,4 @@
-package configx
+package server
 
 import (
 	"github.com/incodemx/incode-go/configx/helper"
@@ -7,8 +7,8 @@ import (
 	"fmt"
 )
 
-// NewApplicationConfiguration defines and loads the configuration from flags and environment variables.
-func NewApplicationConfiguration() (*Configuration, error) {
+// NewConfiguration defines and loads the configuration from flags and environment variables.
+func NewConfiguration() (*Configuration, error) {
 	cfn := &Configuration{}
 
 	env := helper.Load("ENV", "production")

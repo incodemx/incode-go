@@ -6,8 +6,8 @@ import (
 	"github.com/jmoiron/sqlx"
 )
 
-// DatabaseConnection defines the interface for our database operations.
-type DatabaseConnection interface {
+// Connection defines the interface for our database operations.
+type Connection interface {
 	BeginTx() (Transaction, error)
 	Ping() error
 	Close() error

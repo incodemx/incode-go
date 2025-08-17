@@ -1,4 +1,4 @@
-package configx
+package server
 
 // Configuration holds the server-specific configuration.
 type Configuration struct {

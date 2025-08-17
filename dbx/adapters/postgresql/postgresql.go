@@ -1,4 +1,4 @@
-package dbx
+package postgresql
 
 import (
 	"database/sql"
@@ -8,22 +8,22 @@ import (
 
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
-	_ "github.com/mattn/go-sqlite3"
 
 	"github.com/incodemx/incode-go/configx/database"
+	"github.com/incodemx/incode-go/dbx"
 )
 
 const (
 	errMsgNotConnected = "datastore is not connected"
 )
 
-// connection implements the DatabaseConnection interface.
+// connection implements the Connection interface.
 type connection struct {
 	db *sqlx.DB
 }
 
-// NewDatabaseConnection creates a new database connection.
-func NewDatabaseConnection(config *database.Configuration) (DatabaseConnection, error) {
+// NewConnection creates a new database connection.
+func NewConnection(config *database.Configuration) (dbx.Connection, error) {
 	databaseUrl := config.URL
 	if databaseUrl == "" {
 		return nil, fmt.Errorf("datastore url is not set in the configuration")
