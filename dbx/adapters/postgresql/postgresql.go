@@ -96,7 +96,7 @@ func (c *connection) Get(dest any, query string, args any) error {
 }
 
 // BeginTx starts a new database transaction.
-func (c *connection) BeginTx() (Transaction, error) {
+func (c *connection) BeginTx() (dbx.Transaction, error) {
 	tx, err := c.db.Beginx()
 	if err != nil {
 		return nil, err
