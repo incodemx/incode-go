@@ -8,6 +8,6 @@ require (
 )
 
 require (
-	github.com/incodemx/incode-go/configx v0.0.0
+	github.com/incodemx/incode-go/configx v1.0.0
 	github.com/lib/pq v1.10.9
 )
