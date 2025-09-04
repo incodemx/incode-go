@@ -26,7 +26,7 @@ func register(driverName string, extensionPaths []string) error {
 			ConnectHook: func(conn *sqlite3.SQLiteConn) error {
 				// load each extension (empty entry point = default sqlite3_extension_init)
 				for _, p := range extensionPaths {
-					if err := conn.LoadExtension(p, ""); err != nil {
+					if err := conn.LoadExtension(p, "sqlite3_extension_init"); err != nil {
 						return fmt.Errorf("LoadExtension(%s): %w", p, err)
 					}
 				}
