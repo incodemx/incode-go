@@ -34,6 +34,14 @@ func NewConnection(config *database.Configuration) (dbx.Connection, error) {
 		return nil, fmt.Errorf("datastore driver is not set in the configuration")
 	}
 
+	if config.Extensions != "" {
+		driver = "sqlite3_extended"
+		extensions := splitExtensions(config.Extensions)
+		if err := register(driver, extensions); err != nil {
+			return nil, fmt.Errorf("register sqlite extensions driver: %w", err)
+		}
+	}
+
 	dbc, err := sqlx.Connect(driver, databaseUrl)
 	if err != nil {
 		return nil, fmt.Errorf("unable to connect to datastore: %v", err)
