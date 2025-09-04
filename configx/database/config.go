@@ -18,7 +18,7 @@ func NewConfiguration() (*Configuration, error) {
 	flag.StringVar(&cfg.Driver, "db.driver", dbDriver, "Database driver (e.g., sqlite3)")
 
 	dbExtensions := helper.Load("DB_EXTENSIONS", "")
-	flag.StringVar(&cfg.Extensions, "db.extension", dbExtensions, "SQLite-only: Load the UUID extension (e.g., /usr/lib/sqlite3/uuid.so)")
+	flag.StringVar(&cfg.Extensions, "db.extensions", dbExtensions, "SQLite-only: Load the UUID extension (e.g., /usr/lib/sqlite3/uuid.so)")
 
 	return cfg, nil
 }
