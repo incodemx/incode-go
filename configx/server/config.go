@@ -29,8 +29,19 @@ func NewConfiguration() (*Configuration, error) {
 	assets := helper.Load("ASSETS_DIRECTORY", "./build/static")
 	flag.StringVar(&cfn.Assets, "server.assets", assets, "Path to static assets directory")
 
+	cfn.JWT = JWTConfiguration{}
+
 	jwtSecret := helper.Load("JWT_SECRET", "default-secret")
-	flag.StringVar(&cfn.JWTSecret, "server.jwt-secret", jwtSecret, "Secret key for signing JWTs")
+	flag.StringVar(&cfn.JWT.Secret, "server.jwt-secret", jwtSecret, "Secret key for signing JWTs")
+
+	jwtIssuer := helper.Load("JWT_ISSUER", "")
+	flag.StringVar(&cfn.JWT.Issuer, "server.jwt-issuer", jwtIssuer, "Issuer for JWTs")
+
+	jwtAudience := helper.Load("JWT_AUDIENCE", "")
+	flag.StringVar(&cfn.JWT.Audience, "server.jwt-audience", jwtAudience, "Audience for JWTs")
+
+	jwtDuration := helper.LoadInt("JWT_DURATION", 24)
+	flag.IntVar(&cfn.JWT.Duration, "server.jwt-duration", jwtDuration, "Duration (you need to define the time unit) for JWTs")
 
 	return cfn, nil
 }
