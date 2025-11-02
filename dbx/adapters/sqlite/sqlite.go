@@ -169,3 +169,8 @@ func (c *connection) Select(dest any, query string, args any) error {
 	}
 	return c.db.Select(dest, query)
 }
+
+// Connection implements dbx.Connection.
+func (c *connection) Connection() *sqlx.DB {
+	return c.db
+}
