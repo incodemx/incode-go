@@ -15,6 +15,7 @@ type Connection interface {
 	Query(query string, args any) (*sqlx.Rows, error)
 	Get(dest any, query string, args any) error
 	Select(dest any, query string, args any) error
+	Connection() *sqlx.DB
 }
 
 // Transaction defines the interface for methods that can be run within a DB transaction.
